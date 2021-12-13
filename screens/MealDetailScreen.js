@@ -4,10 +4,10 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { MEALS } from '../data/dummy-data';
 import CustomHeaderButton from '../components/HeaderButton';
 
-const MealDetailScreen = props => {
+const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
 
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
   return (
     <View style={styles.screen}>
@@ -22,16 +22,22 @@ const MealDetailScreen = props => {
   );
 };
 
-MealDetailScreen.navigationOptions = navigationData => {
+MealDetailScreen.navigationOptions = (navigationData) => {
   const mealId = navigationData.navigation.getParam('mealId');
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   return {
     headerTitle: selectedMeal.title,
-    headerRight: <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-      <Item title='Favorite' iconName='ios-star' onPress={() => {
-        console.log('mark as your favorate')
-      }}/>
-    </HeaderButtons>
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Favorite"
+          iconName="ios-star"
+          onPress={() => {
+            console.log('mark as your favorate');
+          }}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 
@@ -39,8 +45,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 export default MealDetailScreen;
