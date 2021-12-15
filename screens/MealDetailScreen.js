@@ -1,30 +1,52 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import {
+  ScrollView,
+  Image,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { MEALS } from '../data/dummy-data';
 import CustomHeaderButton from '../components/HeaderButton';
 
-const MealDetailScreen = (props) => {
-  const mealId = props.navigation.getParam('mealId');
-
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-
+const ListItem = props => {
   return (
-    <View style={styles.screen}>
-      <Text>{selectedMeal.title}</Text>
-      <Button
-        title="Go Back to Categories"
-        onPress={() => {
-          props.navigation.popToTop();
-        }}
-      />
+    <View style={styles.listItem}>
+      <Text>{props.children}</Text>
     </View>
   );
 };
+const MealDetailScreen = props => {
+  const mealId = props.navigation.getParam('mealId');
+  const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
-MealDetailScreen.navigationOptions = (navigationData) => {
+  return (
+    <ScrollView>
+      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+      <View style={{ ...styles.details, ...styles.mealDetail }}>
+        <Text>{selectedMeal.duration}</Text>
+        <Text>{selectedMeal.complexity.toUpperCase()}</Text>
+        <Text>{selectedMeal.affordability.toUpperCase()}</Text>
+      </View>
+      <Text style={styles.title}>Ingredients</Text>
+      {selectedMeal.ingredients.map(x => (
+        <ListItem key={x}>{x}</ListItem>
+      ))}
+      <View>
+        <Text style={styles.title}>Steps</Text>
+        {selectedMeal.steps.map(x => (
+          <ListItem key={x}>{x}</ListItem>
+        ))}
+      </View>
+    </ScrollView>
+  );
+};
+
+MealDetailScreen.navigationOptions = navigationData => {
   const mealId = navigationData.navigation.getParam('mealId');
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return {
     headerTitle: selectedMeal.title,
     headerRight: (
@@ -42,10 +64,26 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  details: {
+    flexDirection: 'row',
+    padding: 15,
+    justifyContent: 'space-around',
+  },
+  title: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 22,
+    textAlign: 'center',
+  },
+  listItem: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 10,
   },
 });
 
