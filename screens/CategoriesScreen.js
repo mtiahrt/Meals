@@ -16,6 +16,7 @@ const CategoriesScreen = props => {
   const renderGridItem = itemData => {
     return (
       <CategoryGridTile
+        testId={itemData.item.id}
         title={itemData.item.title}
         color={itemData.item.color}
         onSelect={() => {

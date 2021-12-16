@@ -5,7 +5,7 @@ import {
   Text,
   StyleSheet,
   Platform,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
 } from 'react-native';
 
 const CategoryGridTile = props => {
@@ -20,7 +20,7 @@ const CategoryGridTile = props => {
         <View
           style={{ ...styles.container, ...{ backgroundColor: props.color } }}
         >
-          <Text style={styles.title} numberOfLines={2}>
+          <Text testID={props.testId} style={styles.title} numberOfLines={2}>
             {props.title}
           </Text>
         </View>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 150,
     borderRadius: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   container: {
     flex: 1,
@@ -47,13 +47,13 @@ const styles = StyleSheet.create({
     elevation: 3,
     padding: 15,
     justifyContent: 'flex-end',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   title: {
     fontFamily: 'open-sans-bold',
     fontSize: 22,
-    textAlign: 'right'
-  }
+    textAlign: 'right',
+  },
 });
 
 export default CategoryGridTile;

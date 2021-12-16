@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 
 const MealItem = props => {
@@ -18,7 +18,11 @@ const MealItem = props => {
               style={styles.bgImage}
             >
               <View style={styles.titleContainer}>
-                <Text style={styles.title} numberOfLines={1}>
+                <Text
+                  testID={props.title}
+                  style={styles.title}
+                  numberOfLines={1}
+                >
                   {props.title}
                 </Text>
               </View>
@@ -41,7 +45,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#f5f5f5',
     borderRadius: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   bgImage: {
     width: '100%',
@@ -49,28 +53,28 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   mealRow: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   mealHeader: {
-    height: '85%'
+    height: '85%',
   },
   mealDetail: {
     paddingHorizontal: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: '15%'
+    height: '15%',
   },
   titleContainer: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     paddingVertical: 5,
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
   },
   title: {
     fontFamily: 'open-sans-bold',
     fontSize: 20,
     color: 'white',
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 export default MealItem;
