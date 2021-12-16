@@ -32,9 +32,7 @@
     "react-navigation-tabs": "^2.11.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "detox": "^19.3.1",
-    "jest": "^27.4.5"
+    "@babel/core": "^7.12.9"
   },
   "private": true
 }

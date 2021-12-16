@@ -10,7 +10,7 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import FiltersScreen from '../screens/FiltersScreen';
+import FiltersScreen from '../screens/FavoritesScreen';
 import Colors from '../constants/Colors';
 
 const defaultStackNavOptions = {
@@ -101,10 +101,7 @@ const MainNavigator = createDrawerNavigator(
       screen: MealsFavTabNavigator,
       navigationOptions: { drawerLabel: 'Meals' },
     },
-    Filters: {
-      screen: FiltersNavigator,
-      navigationOptions: { drawerLabel: 'Filters' },
-    },
+    Filters: FiltersNavigator,
   },
   {
     contentOptions: {
